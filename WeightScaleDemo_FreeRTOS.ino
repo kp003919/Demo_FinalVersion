@@ -25,14 +25,8 @@
 //Display circuit wiring 
 #define CLK_PIN    48         // GPIO PIN 48 from the ESP32 MCU is connected to the pin CLK of the LED. 
 #define DIO_PIN    47         // GPIO PIN 47 from the ESP32 MCU is connected to the pin DIO of the LED.
-=======
 #define maxScaleValue 5000     // load cell maximum weight is 5k = 5000grams.
 #include <BlynkSimpleEsp32.h>  // Blynk in ESP32 
-
-//Display circuit wiring 
-#define CLK_PIN    48     // GPIO PIN 48 from the ESP32 MCU 
-#define DIO_PIN    47     // GPIO PIN 47 from the ESP32 MCU 
->>>>>>> f0a26fc581e778c5891b33259179abd4e919ab33
 
 // HX711 circuit wiring
 #define DOUT_PIN  21           // GPIO PIN 21 from the ESP32 MCU is connected to the pin DOUT of the HX711.
