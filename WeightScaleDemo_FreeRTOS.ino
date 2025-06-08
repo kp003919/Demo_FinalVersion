@@ -19,15 +19,14 @@
 #define BLYNK_PRINT Serial
 
 // Load cell variables 
-<<<<<<< HEAD
 #define maxScaleValue 5000      // load cell maximum weight is 5k = 5000grams.
 #include <BlynkSimpleEsp32.h>  // Blynk in ESP32 
 
 //Display circuit wiring 
-#define CLK_PIN    48         // GPIO PIN 48 from the ESP32 MCU 
-#define DIO_PIN    47         // GPIO PIN 47 from the ESP32 MCU 
+#define CLK_PIN    48         // GPIO PIN 48 from the ESP32 MCU is connected to the pin CLK of the LED. 
+#define DIO_PIN    47         // GPIO PIN 47 from the ESP32 MCU is connected to the pin DIO of the LED.
 =======
-#define maxScaleValue 5000         // load cell maximum weight is 5k = 5000grams.
+#define maxScaleValue 5000     // load cell maximum weight is 5k = 5000grams.
 #include <BlynkSimpleEsp32.h>  // Blynk in ESP32 
 
 //Display circuit wiring 
@@ -36,8 +35,8 @@
 >>>>>>> f0a26fc581e778c5891b33259179abd4e919ab33
 
 // HX711 circuit wiring
-#define DOUT_PIN  21           // GPIO PIN 21 from the ESP32 MCU 
-#define SCK_PIN   20           // GPIO PIN 20 from the ESP32 MCU
+#define DOUT_PIN  21           // GPIO PIN 21 from the ESP32 MCU is connected to the pin DOUT of the HX711.
+#define SCK_PIN   20           // GPIO PIN 20 from the ESP32 MCU is connected to the pin SCK of the LED.
 
 // Access Provider (AP) details
 #define AP_NAME  "VM1080293"       // AP name 
@@ -56,18 +55,12 @@ HX711 scaleReader;
 // Blynk timer 
 BlynkTimer timer;
 // calibration factor to be used. 
-<<<<<<< HEAD
 float calibration_factor = -396.99; // Calibration factor to get the well known weight 
                                     // This number works for me. 
                                     // The basic idea about calibration factor is to find a value where you 
                                     // could get readings close to your well know readings. 
                                     // This is estimated by using different factors and printing the corresponding readings.                                       
-=======
-float calibration_factor = -376.99; // Calibration factor to get the well known weight 
-                                    // This number works for me.  
-                                    // right value of the scale. Calibration factor = (reading \ known weight). 
->>>>>>> f0a26fc581e778c5891b33259179abd4e919ab33
-                                  
+                                 
 
 // web server listening on port 80.
 WiFiServer server(80); //web server listening on port 80.
@@ -88,13 +81,11 @@ WiFiMulti wifiMulti;  // wifi access
 //******************************************************************************************** Help functions *********************************************************************
 
 /**
-<<<<<<< HEAD
+
  * Calibration process
  * This function was used to find  calibration factor to get close to the well-known weight.
  * After this value was determined, this funtion was not used in the code.
-=======
- * Calibration process: 
->>>>>>> f0a26fc581e778c5891b33259179abd4e919ab33
+
  */
 
 float getCalibrateFactor()
@@ -108,11 +99,7 @@ float getCalibrateFactor()
     delay(5000);
     Serial.println("Put on your weight ");
     // my known weight is 50.0g 
-<<<<<<< HEAD
     float myWeight = 50.0; //y2, y1 = 0.
-=======
-    float myWeight = 50.0; //y2, y1 =0.
->>>>>>> f0a26fc581e778c5891b33259179abd4e919ab33
    // step 2: get another raw reading when your weight is on the scale 
     float raw_reading2 = scaleReader.read_average(10); //x2
     delay(5000);
@@ -123,13 +110,8 @@ float getCalibrateFactor()
 }
 
 /**
-<<<<<<< HEAD
  * @Desc: This function returns the current weight.  
  *        Max value is expected to be between 0 and 5000g (5k). 
-=======
- * @Desc: This function puts weignt to the scale and return it. Max value is expected to be between 
- *        0 and 5000 g (5k). 
->>>>>>> f0a26fc581e778c5891b33259179abd4e919ab33
  * @return:  - If reading > max, error and return 0 
  *           - if reading <= 0, return 0 
  *           - return reading otherwise. 
@@ -140,14 +122,11 @@ long  getWeight()
       
     if (scaleReader.is_ready()) 
       {         
-<<<<<<< HEAD
+
           // set calibration factor  
           // This value just works fine for m in this demo and 
           // then it has been usd to get the well know weights. 
           // calibration factor = getCalibrationFactor()        
-=======
-          // set calibration factor          
->>>>>>> f0a26fc581e778c5891b33259179abd4e919ab33
           scaleReader.set_scale(calibration_factor);
           // get reading from the load cell          
           long gram_reading = scaleReader.get_units();
@@ -314,11 +293,7 @@ void Task1( void *pvParameters )
       currentWeight = getWeight();   // current weight 
       //releasing the semaphore. 
       xSemaphoreGive(semaphore);  
-<<<<<<< HEAD
       vTaskDelay(500/ portTICK_PERIOD_MS); // poll over 500ms, as requested. 
-=======
-      vTaskDelay(1000/ portTICK_PERIOD_MS); // run per (n) second. 
->>>>>>> f0a26fc581e778c5891b33259179abd4e919ab33
   }
 }
 
@@ -430,12 +405,7 @@ void setup()
     //4- Blynk interaction
      Blynk.begin(BLYNK_AUTH_TOKEN, AP_NAME, AP_PASS);
      // Blynck starts here. 
-<<<<<<< HEAD
-     timer.setInterval(1000L, runBlynk); 
-=======
-     //timer.setInterval(1000L, runBlynk); 
->>>>>>> f0a26fc581e778c5891b33259179abd4e919ab33
-      
+     timer.setInterval(1000L, runBlynk);       
    
      //5- Creating different tasks(getting weight, displaying the current weight, web server and blynk interaction.
       xTaskCreate(Task1, "get Weight", 10000, NULL, 1, &TaskHandle_1); // getting weight 
