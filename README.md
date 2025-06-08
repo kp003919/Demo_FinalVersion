@@ -1,13 +1,13 @@
 ## Title:Smart Weight Measuring Demo using the ESP32 and HX711. 
-       This demo shows a smart application to measure the current weight using ESP and HX711.
+       This demo shows a smart application to measure the current weight using ESP32 MCU and HX711.
        The current weight can be displayed on the LED and the Blynk cloud. Users can also interact witht the demo 
        using the web interface, such as taring (zeroing) the scale or displaying the current weight. 
        
 ## Prerequisites
   # Software  
-    - Arduino IDE or PlatformIO with Visual Code.
+    - Arduino IDE ( PlatformIO with Visual Code could also be used).
     - Windows operating system
-    - Compile for cpp
+    - Compile for C++
     
  # Hardware 
     - ESP32 MCU 
